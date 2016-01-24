@@ -1,0 +1,8 @@
+Package: discern
+Title: A Collection of Utilities for Data Analyse
+Version: 0.0.0.9000
+Authors@R: person("Andrew", "Beeching", email = "andybeeching@gmail.com", role = c("aut", "cre"))
+Description: Discern is a collection of utility R functions to aid in performing a data analysis with R. Abstracted from various projects over time, in general the included functions are geared towards analysing the efficacy of statistical models, though there are some which also aid in data munging and feature engineering. These utilities are intended to complement existing packages, especially caret, not replace them.
+Depends: R (>= 3.1.0)
+License: MIT
+LazyData: true
