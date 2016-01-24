@@ -24,7 +24,7 @@
 #'   colors    = c("black", "orange", "yellow", "green", "red")
 #' )
 
-plotROC <- function(models, res, predictor, cv, colors, titles, maxCurves = 3) {
+plotROC <- function(models, res, predictor, cv, colors, labels, maxCurves = 3) {
 
   len    <- length(models)
   scores <- list()
