@@ -51,7 +51,7 @@ plotROC <- function(models, res, predictor, cv, colors, labels, maxCurves = 3) {
       levels    = levels(cv[[res]])
     )
 
-    scores[[length(scores)+1]] <- paste(type, auc, sep=" - ")
+    scores[[length(scores)+1]] <- paste(label, auc, sep=" - ")
 
     if (isLimit) {
       a <- i - maxCurves
