@@ -1,7 +1,7 @@
 # !/usr/bin/Rscript
 
 #' Utility function to plot learning curves of multiple models.
-#' 
+#'
 #'   - Comparison helps determine if models contain bias or variance
 #'   - Ideally want low training error and good generalization
 #'   - Basic algorithm: split original data at different ratios
@@ -12,7 +12,8 @@
 #'
 #' @param models    {List}   - List of model objects.
 #' @param metric    {String} - Metric models were trained with
-#' @param cv        {Data}   - Cross-validation data set (containing predictor) 
+#' @param df        {Data}   - Training data set (containing response)
+#' @param cv        {Data}   - Cross-validation data set (containing response)
 #' @param labels    {List}   - *Optional* List of labels associated with models
 #' @param colors    {List}   - *Optional* List of colors associated with models
 #' @param seed      {Number} - Seed to use for training each model
@@ -22,13 +23,14 @@
 #'   models     = list(cfFit),
 #'   metric     = "ROC",
 #'   ctrlFn     = fitControl,
+#'   df         = testDf,
 #'   cv         = valid,
 #'   colors     = c("orange", "blue"),
 #'   labels     = c("Glm Model 4", "Glm Model 6", "CForest"),
 #'   seed       = SEED
 #' )
 
-plotLearningCurves <- function(models, labels, metric, ctrlFn, cv, colors, seed = 1) {
+plotLearningCurves <- function(models, labels, metric, ctrlFn, df, cv, colors, seed = 1) {
 
   len <- length(models)
   par(mfrow=c(1, len))
@@ -51,14 +53,13 @@ plotLearningCurves <- function(models, labels, metric, ctrlFn, cv, colors, seed 
     res    <- as.character(trms[[2]])
     covars <- trms[[3]]
     covars <- paste(covars[2], '+', covars[3])
-    frmla  <- paste(res, '~', covars)
-    frmla  <- as.formula(frmla)
+    frmla  <- as.formula(paste(res, '~', covars))
     method <- model$call[[4]]
     tColor <- if (length(colors) < 1) rainbow[[1]] else colors[[1]]
     vColor <- if (length(colors) < 1) rainbow[[2]] else colors[[2]]
-    
+
     scores <- createLearnData(seq(0.1, 0.9, by=0.1),
-      raw.munged,
+      df,
       res,
       frmla,
       method,
