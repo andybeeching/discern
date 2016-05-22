@@ -12,7 +12,7 @@
 #'
 #' @param models    {List}   - List of model objects.
 #' @param metric    {String} - Metric models were trained with
-#' @param df        {Data}   - Training data set (containing response)
+#' @param df        {Data}   - Training data set
 #' @param cv        {Data}   - Cross-validation data set (containing response)
 #' @param labels    {List}   - *Optional* List of labels associated with models
 #' @param colors    {List}   - *Optional* List of colors associated with models
@@ -24,7 +24,7 @@
 #'   metric     = "ROC",
 #'   ctrlFn     = fitControl,
 #'   df         = testDf,
-#'   cv         = valid,
+#'   cv         = validDf,
 #'   colors     = c("orange", "blue"),
 #'   labels     = c("Glm Model 4", "Glm Model 6", "CForest"),
 #'   seed       = SEED
